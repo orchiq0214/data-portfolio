@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Push 触达关闭率分析与优化</title>
+  <style>
+    body{margin:0;background:#f5f7fb;color:#152033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}.page{width:min(1040px,calc(100% - 40px));margin:0 auto}.nav{border-bottom:1px solid #e3e8ef;background:#fff}.nav div{height:62px;display:flex;align-items:center;justify-content:space-between}.nav a{font-weight:700;color:#1d4ed8}.hero{padding:44px 0 24px}.eyebrow{display:inline-flex;padding:5px 10px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:13px;font-weight:700}h1{font-size:42px;line-height:1.12;margin:16px 0 12px}.lead{font-size:18px;color:#475467;max-width:820px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.card,.panel{background:#fff;border:1px solid #e3e8ef;border-radius:10px;box-shadow:0 1px 3px rgba(16,24,40,.05)}.card{padding:16px}.card span{display:block;color:#667085;font-size:13px}.card strong{display:block;margin-top:8px;font-size:28px}.section{padding:24px 0}.panel{padding:22px;margin-bottom:16px}h2{font-size:24px;margin:0 0 12px}h3{font-size:18px;margin:18px 0 8px}p{margin:0 0 10px;color:#475467}ul{margin:0;padding-left:20px;color:#344054}.visual{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.chart{min-height:210px;border-radius:10px;background:#0b1220;padding:16px;color:#dbeafe}.line{height:120px;background:linear-gradient(135deg,transparent 8%,#38bdf8 8.6%,transparent 9.2%),linear-gradient(150deg,transparent 24%,#38bdf8 24.6%,transparent 25.2%),linear-gradient(165deg,transparent 42%,#38bdf8 42.6%,transparent 43.2%),linear-gradient(176deg,transparent 60%,#38bdf8 60.6%,transparent 61.2%),repeating-linear-gradient(0deg,rgba(148,163,184,.2) 0 1px,transparent 1px 30px)}.hbars{display:grid;gap:10px;margin-top:14px}.hbar{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden}.hbar i{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#2dd4bf)}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.flow span{background:#f8fafc;border:1px solid #e3e8ef;border-radius:8px;padding:12px;text-align:center;font-weight:700;color:#344054}.meta{font-size:13px;color:#667085}@media(max-width:820px){.grid,.visual,.flow{grid-template-columns:1fr}h1{font-size:34px}}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="page"><a href="../index.html">← 返回首页</a><span class="meta">全流程分析案例</span></div></header>
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">全流程分析案例</span>
+      <h1>Push 触达关闭率分析与优化：从经验运营到数据闭环</h1>
+      <p class="lead">围绕 Push 触达效果与关闭通知风险，展示从指标拆解、归因分析、素材赛马到机制沉淀的一条分析路径。</p>
+      <div class="grid">
+        <div class="card"><span>核心问题</span><strong>关闭率</strong><p>用户为什么关闭通知，以及哪些触达动作风险最高。</p></div>
+        <div class="card"><span>验证方式</span><strong>素材赛马</strong><p>候选文案先小流量验证，胜出后再放量。</p></div>
+        <div class="card"><span>沉淀结果</span><strong>机制化</strong><p>监控、规则、特征和 AI 辅助建议。</p></div>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>分析架构</h2>
+      <svg viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;max-width:820px;height:auto;display:block;margin:0 auto">
+        <defs>
+          <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 z" fill="#1d4ed8"/>
+          </marker>
+        </defs>
+        <rect width="820" height="440" fill="#f5f7fb" rx="10"/>
+        <text x="410" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#152033">Push 触达分析架构</text>
+        <text x="20" y="65" font-size="12" font-weight="700" fill="#1d4ed8">① 数据源</text>
+        <g>
+          <rect x="40" y="78" width="120" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="100" y="103" text-anchor="middle" font-size="13" fill="#152033">触达</text>
+          <rect x="180" y="78" width="120" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="240" y="103" text-anchor="middle" font-size="13" fill="#152033">曝光</text>
+          <rect x="320" y="78" width="120" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="380" y="103" text-anchor="middle" font-size="13" fill="#152033">点击</text>
+          <rect x="460" y="78" width="120" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="520" y="103" text-anchor="middle" font-size="13" fill="#152033">关闭通知</text>
+          <rect x="600" y="78" width="120" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="660" y="103" text-anchor="middle" font-size="13" fill="#152033">留存</text>
+        </g>
+        <line x1="100" y1="118" x2="100" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="240" y1="118" x2="240" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="380" y1="118" x2="380" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="520" y1="118" x2="520" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="660" y1="118" x2="660" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="100" y1="148" x2="660" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="380" y1="148" x2="380" y2="170" stroke="#1d4ed8" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+        <text x="20" y="160" font-size="12" font-weight="700" fill="#1d4ed8">② 统一口径</text>
+        <rect x="320" y="170" width="120" height="40" rx="6" fill="#1d4ed8"/>
+        <text x="380" y="195" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">宽表 / 口径合并</text>
+        <line x1="380" y1="210" x2="380" y2="235" stroke="#1d4ed8" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+        <text x="20" y="250" font-size="12" font-weight="700" fill="#1d4ed8">③ 分析方向</text>
+        <rect x="40" y="260" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="120" y="285" text-anchor="middle" font-size="13" fill="#152033">文案生命周期</text>
+        <rect x="220" y="260" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="300" y="285" text-anchor="middle" font-size="13" fill="#152033">关闭归因</text>
+        <rect x="400" y="260" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="480" y="285" text-anchor="middle" font-size="13" fill="#152033">人群分群</text>
+        <line x1="120" y1="300" x2="120" y2="335" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="300" y1="300" x2="300" y2="335" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="480" y1="300" x2="480" y2="335" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="120" y1="335" x2="480" y2="335" stroke="#1d4ed8" stroke-width="1.2"/>
+        <text x="20" y="350" font-size="12" font-weight="700" fill="#1d4ed8">④ 沉淀</text>
+        <rect x="100" y="360" width="120" height="40" rx="6" fill="#38bdf8"/>
+        <text x="160" y="385" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">素材赛马</text>
+        <rect x="240" y="360" width="120" height="40" rx="6" fill="#38bdf8"/>
+        <text x="300" y="385" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">机制监控</text>
+        <rect x="380" y="360" width="160" height="40" rx="6" fill="#38bdf8"/>
+        <text x="460" y="385" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">AI 辅助选品 / 规则</text>
+      </svg>
+      <p class="meta">架构图：数据源 → 统一口径 → 多维分析 → 素材赛马与机制沉淀</p>
+    </section>
+
+    <section class="section panel">
+      <h2>关键判断</h2>
+      <p>无论是人工运营策略还是算法分发策略，都需要先建立统一的数据基础。否则同一条触达链路在不同系统里口径不一致，后续归因、实验和算法反馈都会失真。</p>
+      <h3>难点</h3>
+      <p>数据来源多，涉及触达、曝光、点击、访问、下载、关闭通知和后续留存等多条链路；如果只看单次点击率，容易忽略长期触达能力被损耗的问题。</p>
+      <h3>沉淀结果</h3>
+      <p>形成 AI 辅助选品流程、素材赛马机制、结果自动化分析和算法特征反馈，让一次分析变成可持续迭代的运营机制。</p>
+    </section>
+
+    <section class="section visual">
+      <div class="chart">
+        <strong>示意图：文案效果衰减与关闭风险</strong>
+        <div class="line" aria-hidden="true"></div>
+        <p class="meta">同一素材多轮触达后，点击效率可能下降，关闭风险可能上升。</p>
+      </div>
+      <div class="panel">
+        <h2>分析框架</h2>
+        <div class="flow">
+          <span>目标拆解</span><span>口径统一</span><span>归因分析</span><span>素材赛马</span><span>机制沉淀</span>
+        </div>
+        <div class="hbars" aria-hidden="true"><div class="hbar"><i style="width:82%"></i></div><div class="hbar"><i style="width:66%"></i></div><div class="hbar"><i style="width:48%"></i></div></div>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>方法路径</h2>
+      <h3>1. 统一口径与数据链路</h3>
+      <p>先对齐曝光、点击、访问、下载、关闭通知、后续留存等指标口径，把系统侧、营销平台、客户端和云端数据合并到可分析的宽表。</p>
+      <h3>2. 分析文案生命周期与关闭归因</h3>
+      <p>不只看单次 CTR，而是观察文案多轮触达后的效果衰减，并用末次曝光归因识别高风险素材、时段、人群和频次组合。</p>
+      <h3>3. 用素材赛马替代慢实验</h3>
+      <p>传统 AB 实验太慢，因此采用文案池机制：候选素材先小流量赛马，只有转化表现好且围栏指标稳定的素材才进入放量。</p>
+      <h3>4. 推动算法优化</h3>
+      <p>结合用户在设备和应用商店的常用行为，贡献特征方向和样本口径；算法团队负责模型训练、上线和效果验证。</p>
+    </section>
+
+    <section class="section panel">
+      <h2>角色边界</h2>
+      <ul>
+        <li>分析范围：问题拆解、指标口径、分析链路、素材赛马评估、监控和分析结论沉淀。</li>
+        <li>协作范围：与运营、产品、算法、开发讨论可落地的优化动作。</li>
+        <li>工程边界：模型训练、工程上线、最终触达策略发布由对应团队完成。</li>
+        <li>公开表达：所有数据均使用 XX 或量级表达，不展示真实系统和业务截图。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

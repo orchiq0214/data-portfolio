@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>数据治理驾驶舱</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --soft: #f8fafc;
+      --line: #e2e8f0;
+      --text: #111827;
+      --muted: #64748b;
+      --blue: #2563eb;
+      --cyan: #0891b2;
+      --green: #16a34a;
+      --amber: #d97706;
+      --red: #dc2626;
+      --violet: #7c3aed;
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, #eef4ff 0, #f5f7fb 260px),
+        var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 14px;
+      padding: 18px 20px;
+      color: #fff;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      border-radius: 12px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    .meta {
+      color: #cbd5e1;
+      text-align: right;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .filter,
+    .metric-card,
+    .panel,
+    .insight-card,
+    .health-card,
+    .action-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+
+    .filter {
+      padding: 9px 12px;
+    }
+
+    .filter span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .filter strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .command-center {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 12px;
+      margin: 18px 0 20px;
+    }
+
+    .health-card,
+    .action-card {
+      padding: 16px;
+    }
+
+    .health-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .health-head h2,
+    .action-card h2,
+    .section-title h2 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .score {
+      text-align: right;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .score strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .score span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .health-item {
+      padding: 12px;
+      background: var(--soft);
+      border: 1px solid #edf2f7;
+      border-radius: var(--radius);
+      border-left: 3px solid var(--blue);
+    }
+
+    .health-item.warn {
+      border-left-color: var(--amber);
+    }
+
+    .health-item.good {
+      border-left-color: var(--green);
+    }
+
+    .health-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .health-item strong {
+      display: block;
+      margin-top: 7px;
+      font-size: 18px;
+    }
+
+    .health-item small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .path {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 9px;
+      padding: 10px;
+      background: var(--soft);
+      border: 1px solid #edf2f7;
+      border-radius: var(--radius);
+    }
+
+    .step-no {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #dbeafe;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .step b {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px 0 10px;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric-card {
+      position: relative;
+      min-height: 104px;
+      padding: 13px;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: var(--blue);
+    }
+
+    .metric-card.collect::before {
+      background: var(--cyan);
+    }
+
+    .metric-card.storage::before {
+      background: var(--green);
+    }
+
+    .metric-card.compute::before {
+      background: var(--amber);
+    }
+
+    .metric-name {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric-value {
+      margin-top: 9px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .metric-delta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .up {
+      color: var(--green);
+    }
+
+    .down {
+      color: var(--red);
+    }
+
+    .flat {
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .panel {
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .panel-title small {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 64px;
+      gap: 9px;
+      align-items: center;
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .bar-track {
+      height: 9px;
+      background: #edf2f7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: inherit;
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .donut {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: conic-gradient(var(--cyan) 0 28%, var(--green) 28% 58%, var(--amber) 58% 84%, #cbd5e1 84% 100%);
+      position: relative;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 26px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+    }
+
+    .legend {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .line-chart {
+      width: 100%;
+      height: 228px;
+    }
+
+    .insight-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .insight-card {
+      padding: 13px;
+      background: #f8fafc;
+    }
+
+    .insight-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: #172554;
+    }
+
+    .insight-card span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #edf2f7;
+      padding: 8px 7px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      background: #f8fafc;
+      font-weight: 600;
+    }
+
+    .note {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      .filters,
+      .metric-grid,
+      .health-grid,
+      .insight-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .command-center,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 14px;
+      }
+
+      .topbar {
+        display: block;
+      }
+
+      .meta {
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      .filters,
+      .metric-grid,
+      .health-grid,
+      .insight-row {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div>
+        <h1>数据治理驾驶舱</h1>
+        <div class="subtitle">脱敏看板示意｜先判断成本是否失控，再定位采集/存储/计算责任层，最后指向治理动作</div>
+      </div>
+      <div class="meta">
+        数据周期：最近 12 个月<br />
+        更新时间：T+1 10:00｜数据已脱敏
+      </div>
+    </div>
+
+    <section aria-label="看板鸟瞰">
+      <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;max-width:800px;height:auto;display:block;margin:0 auto 14px">
+        <defs>
+          <linearGradient id="grad-cost" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="rgba(37, 99, 235, 0.25)"/>
+            <stop offset="1" stop-color="rgba(34, 211, 238, 0.15)"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="200" fill="#f5f7fb" rx="8"/>
+        <text x="400" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#172554">本看板鸟瞰 ｜ 数据治理驾驶舱 共 4 大主题</text>
+        <g font-weight="700" fill="#172554" text-anchor="middle">
+          <rect x="20" y="50" width="180" height="80" rx="6" fill="url(#grad-cost)"/>
+          <text x="110" y="86" font-size="13">整体情况</text>
+          <text x="110" y="104" font-size="11" fill="#64748b">总费用 / 健康度 / 月度趋势</text>
+          <rect x="220" y="50" width="180" height="80" rx="6" fill="url(#grad-cost)"/>
+          <text x="310" y="86" font-size="13">采集 / 存储 / 计算</text>
+          <text x="310" y="104" font-size="11" fill="#64748b">各项费用二级分布 + 趋势</text>
+          <rect x="420" y="50" width="180" height="80" rx="6" fill="url(#grad-cost)"/>
+          <text x="510" y="86" font-size="13">各项用量</text>
+          <text x="510" y="104" font-size="11" fill="#64748b">点位 / 存储量 / 机器数</text>
+          <rect x="620" y="50" width="160" height="80" rx="6" fill="url(#grad-cost)"/>
+          <text x="700" y="86" font-size="13">治理动作</text>
+          <text x="700" y="104" font-size="11" fill="#64748b">采集 / 存储 / 计算</text>
+        </g>
+        <text x="20" y="158" font-size="11" fill="#64748b">① 整体情况  ② 各项费用  ③ 各项用量  ④ 治理动作</text>
+        <text x="20" y="178" font-size="11" fill="#64748b">图例：色块 = 看板的核心模块；下方标识 = 阅读顺序</text>
+      </svg>
+    </section>
+
+    <div class="filters">
+      <div class="filter"><span>月份</span><strong>最新一月</strong></div>
+      <div class="filter"><span>站点</span><strong>全部站点</strong></div>
+      <div class="filter"><span>一级服务</span><strong>采集 / 存储 / 计算</strong></div>
+      <div class="filter"><span>二级服务</span><strong>EIP / ELB / OBS / Kafka / Hadoop</strong></div>
+      <div class="filter"><span>口径</span><strong>资产与成本｜脱敏口径</strong></div>
+    </div>
+
+    <div class="command-center">
+      <div class="health-card">
+        <div class="health-head">
+          <h2>成本健康度总览</h2>
+          <div class="score"><strong>76</strong><span>/ 100 成本健康分</span></div>
+        </div>
+        <div class="health-grid">
+          <div class="health-item warn"><span>总费用</span><strong>关注</strong><small>最新一月环比上升，需拆服务层</small></div>
+          <div class="health-item good"><span>采集费用</span><strong>可控</strong><small>点位治理后增速放缓</small></div>
+          <div class="health-item warn"><span>存储费用</span><strong>观察</strong><small>历史数据生命周期需复核</small></div>
+          <div class="health-item"><span>计算费用</span><strong>波动</strong><small>机器数与计算时长不完全同步</small></div>
+        </div>
+      </div>
+      <div class="action-card">
+        <h2>成本诊断路径</h2>
+        <div class="path">
+          <div class="step"><span class="step-no">1</span><div><b>是否超预算？</b><p>先看总费用、同比、环比和月度趋势，判断是否出现结构性失控。</p></div></div>
+          <div class="step"><span class="step-no">2</span><div><b>哪一层在涨？</b><p>拆采集、存储、计算三类一级服务，再定位二级服务贡献。</p></div></div>
+          <div class="step"><span class="step-no">3</span><div><b>费用是否由用量驱动？</b><p>对齐点位量级、存储量、机器数和计算时长，识别异常成本。</p></div></div>
+          <div class="step"><span class="step-no">4</span><div><b>下一步怎么治理？</b><p>落到点位下线、生命周期、任务优化、机器资源和预算监控。</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-title">
+        <h2>一、整体情况</h2>
+        <span>回答“成本是否失控”</span>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-name">最新一月总费用</div>
+          <div class="metric-value">¥ XX.X 万</div>
+          <div class="metric-delta"><span class="up">同比 +X.X%</span><span class="down">环比 +X.X%</span></div>
+        </div>
+        <div class="metric-card collect">
+          <div class="metric-name">采集费用</div>
+          <div class="metric-value">¥ XX.X 万</div>
+          <div class="metric-delta"><span class="flat">同比 +X.X%</span><span class="up">环比 -X.X%</span></div>
+        </div>
+        <div class="metric-card storage">
+          <div class="metric-name">存储费用</div>
+          <div class="metric-value">¥ XX.X 万</div>
+          <div class="metric-delta"><span class="down">同比 +X.X%</span><span class="down">环比 +X.X%</span></div>
+        </div>
+        <div class="metric-card compute">
+          <div class="metric-name">计算费用</div>
+          <div class="metric-value">¥ XX.X 万</div>
+          <div class="metric-delta"><span class="flat">同比 +X.X%</span><span class="up">环比 -X.X%</span></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">分月总费用 <small>近 12 月</small></div>
+          <div class="bar-row"><span>2025-07</span><div class="bar-track"><div class="bar-fill" style="width: 48%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2025-08</span><div class="bar-track"><div class="bar-fill" style="width: 52%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2025-09</span><div class="bar-track"><div class="bar-fill" style="width: 56%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2025-10</span><div class="bar-track"><div class="bar-fill" style="width: 62%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2025-11</span><div class="bar-track"><div class="bar-fill" style="width: 64%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2025-12</span><div class="bar-track"><div class="bar-fill" style="width: 70%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-01</span><div class="bar-track"><div class="bar-fill" style="width: 74%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-02</span><div class="bar-track"><div class="bar-fill" style="width: 67%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-03</span><div class="bar-track"><div class="bar-fill" style="width: 72%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-04</span><div class="bar-track"><div class="bar-fill" style="width: 78%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-05</span><div class="bar-track"><div class="bar-fill" style="width: 86%"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-06</span><div class="bar-track"><div class="bar-fill" style="width: 82%"></div></div><strong>XX</strong></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">最新一月一级费用分布</div>
+          <div class="donut-wrap">
+            <div class="donut"></div>
+            <div class="legend">
+              <div class="legend-row"><span>采集</span><strong>28%</strong></div>
+              <div class="legend-row"><span>存储</span><strong>30%</strong></div>
+              <div class="legend-row"><span>计算</span><strong>26%</strong></div>
+              <div class="legend-row"><span>其他</span><strong>16%</strong></div>
+            </div>
+          </div>
+          <div class="insight-row" style="grid-template-columns: 1fr; margin-top: 14px;">
+            <div class="insight-card"><b>本期判断</b><span>总费用仍在预算带内，但存储费用环比上升，需要优先看 OBS、Hadoop 存储量和生命周期策略。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>二、各项费用</h2>
+        <span>回答“是哪类服务在推高成本”</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">采集费用｜最新一月二级服务分布</div>
+          <div class="donut-wrap"><div class="donut"></div><div class="legend"><div class="legend-row"><span>EIP</span><strong>32%</strong></div><div class="legend-row"><span>ELB</span><strong>26%</strong></div><div class="legend-row"><span>Kafka</span><strong>24%</strong></div><div class="legend-row"><span>其他</span><strong>18%</strong></div></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">采集费用｜近 N 月二级服务趋势</div>
+          <svg class="line-chart" viewBox="0 0 760 228" role="img" aria-label="采集费用趋势">
+            <g stroke="#e5e7eb"><line x1="38" y1="190" x2="730" y2="190"/><line x1="38" y1="140" x2="730" y2="140"/><line x1="38" y1="90" x2="730" y2="90"/><line x1="38" y1="40" x2="730" y2="40"/></g>
+            <polyline points="54,150 112,138 170,126 228,132 286,116 344,112 402,108 460,118 518,104 576,96 634,92 692,98" fill="none" stroke="#0891b2" stroke-width="3"/>
+            <polyline points="54,174 112,168 170,158 228,154 286,146 344,142 402,136 460,132 518,128 576,124 634,122 692,118" fill="none" stroke="#7c3aed" stroke-width="3"/>
+            <polyline points="54,182 112,176 170,170 228,166 286,162 344,154 402,150 460,142 518,136 576,128 634,124 692,120" fill="none" stroke="#16a34a" stroke-width="3"/>
+            <text x="548" y="28" fill="#64748b" font-size="12">EIP / ELB / Kafka</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">存储费用｜最新一月二级服务分布</div>
+          <div class="donut-wrap"><div class="donut" style="background: conic-gradient(var(--green) 0 44%, var(--amber) 44% 78%, var(--blue) 78% 92%, #cbd5e1 92% 100%)"></div><div class="legend"><div class="legend-row"><span>OBS</span><strong>44%</strong></div><div class="legend-row"><span>Hadoop</span><strong>34%</strong></div><div class="legend-row"><span>Kafka</span><strong>14%</strong></div><div class="legend-row"><span>其他</span><strong>8%</strong></div></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">存储费用｜近 N 月二级服务趋势</div>
+          <svg class="line-chart" viewBox="0 0 760 228" role="img" aria-label="存储费用趋势">
+            <g stroke="#e5e7eb"><line x1="38" y1="190" x2="730" y2="190"/><line x1="38" y1="140" x2="730" y2="140"/><line x1="38" y1="90" x2="730" y2="90"/><line x1="38" y1="40" x2="730" y2="40"/></g>
+            <polyline points="54,168 112,160 170,148 228,138 286,128 344,118 402,110 460,100 518,88 576,78 634,68 692,60" fill="none" stroke="#16a34a" stroke-width="3"/>
+            <polyline points="54,180 112,174 170,166 228,154 286,148 344,138 402,128 460,116 518,108 576,98 634,86 692,80" fill="none" stroke="#d97706" stroke-width="3"/>
+            <text x="580" y="28" fill="#64748b" font-size="12">OBS / Hadoop</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">计算费用｜最新一月二级服务分布</div>
+          <div class="donut-wrap"><div class="donut" style="background: conic-gradient(var(--amber) 0 48%, var(--blue) 48% 72%, var(--cyan) 72% 90%, #cbd5e1 90% 100%)"></div><div class="legend"><div class="legend-row"><span>Hadoop</span><strong>48%</strong></div><div class="legend-row"><span>Kafka</span><strong>24%</strong></div><div class="legend-row"><span>ELB</span><strong>18%</strong></div><div class="legend-row"><span>其他</span><strong>10%</strong></div></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">计算费用｜近 N 月二级服务趋势</div>
+          <svg class="line-chart" viewBox="0 0 760 228" role="img" aria-label="计算费用趋势">
+            <g stroke="#e5e7eb"><line x1="38" y1="190" x2="730" y2="190"/><line x1="38" y1="140" x2="730" y2="140"/><line x1="38" y1="90" x2="730" y2="90"/><line x1="38" y1="40" x2="730" y2="40"/></g>
+            <polyline points="54,140 112,150 170,126 228,132 286,96 344,118 402,90 460,108 518,86 576,120 634,94 692,104" fill="none" stroke="#d97706" stroke-width="3"/>
+            <polyline points="54,166 112,158 170,162 228,150 286,146 344,140 402,132 460,136 518,128 576,122 634,126 692,118" fill="none" stroke="#2563eb" stroke-width="3"/>
+            <text x="585" y="28" fill="#64748b" font-size="12">Hadoop / Kafka</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>三、各项用量</h2>
+        <span>回答“费用变化是否由真实用量驱动”</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">点位量级｜近 N 月</div>
+          <div class="bar-row"><span>2026-01</span><div class="bar-track"><div class="bar-fill" style="width: 58%; background: var(--cyan)"></div></div><strong>XXB</strong></div>
+          <div class="bar-row"><span>2026-02</span><div class="bar-track"><div class="bar-fill" style="width: 61%; background: var(--cyan)"></div></div><strong>XXB</strong></div>
+          <div class="bar-row"><span>2026-03</span><div class="bar-track"><div class="bar-fill" style="width: 67%; background: var(--cyan)"></div></div><strong>XXB</strong></div>
+          <div class="bar-row"><span>2026-04</span><div class="bar-track"><div class="bar-fill" style="width: 72%; background: var(--cyan)"></div></div><strong>XXB</strong></div>
+          <div class="bar-row"><span>2026-05</span><div class="bar-track"><div class="bar-fill" style="width: 80%; background: var(--cyan)"></div></div><strong>XXB</strong></div>
+          <div class="bar-row"><span>2026-06</span><div class="bar-track"><div class="bar-fill" style="width: 74%; background: var(--cyan)"></div></div><strong>XXB</strong></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">最新一日 TOP 点位量级</div>
+          <div class="bar-row"><span>point_a</span><div class="bar-track"><div class="bar-fill" style="width: 94%; background: var(--cyan)"></div></div><strong class="up">+X%</strong></div>
+          <div class="bar-row"><span>point_b</span><div class="bar-track"><div class="bar-fill" style="width: 76%; background: var(--cyan)"></div></div><strong class="down">-X%</strong></div>
+          <div class="bar-row"><span>point_c</span><div class="bar-track"><div class="bar-fill" style="width: 62%; background: var(--cyan)"></div></div><strong class="up">+X%</strong></div>
+          <div class="bar-row"><span>point_d</span><div class="bar-track"><div class="bar-fill" style="width: 48%; background: var(--cyan)"></div></div><strong class="flat">+X%</strong></div>
+          <div class="bar-row"><span>point_e</span><div class="bar-track"><div class="bar-fill" style="width: 36%; background: var(--cyan)"></div></div><strong class="up">+X%</strong></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">存储量｜最新一月二级服务分布</div>
+          <div class="donut-wrap"><div class="donut" style="background: conic-gradient(var(--green) 0 46%, var(--amber) 46% 82%, var(--blue) 82% 94%, #cbd5e1 94% 100%)"></div><div class="legend"><div class="legend-row"><span>OBS</span><strong>46%</strong></div><div class="legend-row"><span>Hadoop</span><strong>36%</strong></div><div class="legend-row"><span>Kafka</span><strong>12%</strong></div><div class="legend-row"><span>其他</span><strong>6%</strong></div></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">存储量｜近 N 月趋势</div>
+          <svg class="line-chart" viewBox="0 0 760 228" role="img" aria-label="存储量趋势">
+            <g stroke="#e5e7eb"><line x1="38" y1="190" x2="730" y2="190"/><line x1="38" y1="140" x2="730" y2="140"/><line x1="38" y1="90" x2="730" y2="90"/><line x1="38" y1="40" x2="730" y2="40"/></g>
+            <polyline points="54,170 112,158 170,146 228,132 286,124 344,112 402,104 460,94 518,86 576,78 634,70 692,66" fill="none" stroke="#16a34a" stroke-width="3"/>
+            <polyline points="54,184 112,178 170,170 228,160 286,152 344,144 402,136 460,126 518,118 576,108 634,98 692,92" fill="none" stroke="#d97706" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title">机器数｜近 N 月</div>
+          <div class="bar-row"><span>2026-01</span><div class="bar-track"><div class="bar-fill" style="width: 52%; background: var(--amber)"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-02</span><div class="bar-track"><div class="bar-fill" style="width: 58%; background: var(--amber)"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-03</span><div class="bar-track"><div class="bar-fill" style="width: 64%; background: var(--amber)"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-04</span><div class="bar-track"><div class="bar-fill" style="width: 61%; background: var(--amber)"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-05</span><div class="bar-track"><div class="bar-fill" style="width: 76%; background: var(--amber)"></div></div><strong>XX</strong></div>
+          <div class="bar-row"><span>2026-06</span><div class="bar-track"><div class="bar-fill" style="width: 69%; background: var(--amber)"></div></div><strong>XX</strong></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">机器计算时长｜近 N 月</div>
+          <svg class="line-chart" viewBox="0 0 760 228" role="img" aria-label="机器计算时长趋势">
+            <g stroke="#e5e7eb"><line x1="38" y1="190" x2="730" y2="190"/><line x1="38" y1="140" x2="730" y2="140"/><line x1="38" y1="90" x2="730" y2="90"/><line x1="38" y1="40" x2="730" y2="40"/></g>
+            <polyline points="54,164 112,152 170,144 228,148 286,120 344,126 402,104 460,116 518,92 576,110 634,96 692,106" fill="none" stroke="#d97706" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="insight-row">
+        <div class="insight-card"><b>采集治理动作</b><span>定位 TOP 点位，识别无效上报、重复上报和异常放量点位。</span></div>
+        <div class="insight-card"><b>存储治理动作</b><span>按冷热数据、保留周期和服务归属制定生命周期策略。</span></div>
+        <div class="insight-card"><b>计算治理动作</b><span>对齐任务频率、机器数和计算时长，识别低效任务和资源浪费。</span></div>
+      </div>
+
+      <div class="panel" style="margin-top: 10px;">
+        <div class="panel-title">主要指标表 <small>覆盖费用与用量核心指标</small></div>
+        <table>
+          <thead>
+            <tr>
+              <th>月份</th><th>总费用</th><th>采集费用</th><th>存储费用</th><th>计算费用</th><th>点位量级</th><th>存储量</th><th>机器数</th><th>计算时长</th><th>同比</th><th>环比</th><th>风险标记</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2026-06</td><td>XX</td><td>XX</td><td>XX</td><td>XX</td><td>XXB</td><td>XXTB</td><td>XX</td><td>XXh</td><td>+X%</td><td>+X%</td><td class="down">关注</td></tr>
+            <tr><td>2026-05</td><td>XX</td><td>XX</td><td>XX</td><td>XX</td><td>XXB</td><td>XXTB</td><td>XX</td><td>XXh</td><td>+X%</td><td>+X%</td><td class="flat">观察</td></tr>
+            <tr><td>2026-04</td><td>XX</td><td>XX</td><td>XX</td><td>XX</td><td>XXB</td><td>XXTB</td><td>XX</td><td>XXh</td><td>+X%</td><td>-X%</td><td class="up">正常</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="note">
+      说明：本页面为作品集看板，所有费用、点位、服务名和趋势均经过抽象处理。重点展示数据治理的驾驶舱式组织方式：资产盘点、质量护栏、成本归因、用量核验和治理动作。
+    </p>
+  </main>
+</body>
+</html>

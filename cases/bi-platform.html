@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>指标体系、主题报表与自助分析平台</title>
+  <style>
+    body{margin:0;background:#f7f8fb;color:#152033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.65}.page{width:min(1040px,calc(100% - 40px));margin:0 auto}a{text-decoration:none;color:inherit}.nav{background:#fff;border-bottom:1px solid #e3e8ef}.nav div{height:62px;display:flex;align-items:center;justify-content:space-between}.nav a{color:#1d4ed8;font-weight:700}.hero{padding:44px 0 20px}.eyebrow{display:inline-flex;padding:5px 10px;border-radius:999px;background:#ecfeff;color:#0e7490;font-size:13px;font-weight:700}h1{font-size:42px;line-height:1.12;margin:16px 0 12px}.lead{font-size:18px;color:#475467;max-width:820px}.panel,.card{background:#fff;border:1px solid #e3e8ef;border-radius:10px;box-shadow:0 1px 3px rgba(16,24,40,.05)}.panel{padding:22px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:16px}.card span{display:block;color:#667085;font-size:13px}.card strong{display:block;margin-top:8px;font-size:24px}.map{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.box{padding:14px;border-radius:8px;background:#f8fafc;border:1px solid #e3e8ef}.box h3{margin:0 0 8px;font-size:16px}h2{font-size:24px;margin:0 0 12px}p{margin:0 0 10px;color:#475467}ul{margin:0;padding-left:20px;color:#344054}.btn{display:inline-flex;margin-top:8px;padding:9px 14px;border-radius:7px;background:#1d4ed8;color:#fff;font-weight:700}.meta{font-size:13px;color:#667085}@media(max-width:820px){.grid,.map{grid-template-columns:1fr}h1{font-size:34px}}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="page"><a href="../index.html">← 返回首页</a><span class="meta">数据产品体系案例</span></div></header>
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">数据产品与 BI 体系</span>
+      <h1>指标体系、主题报表与自助分析平台建设</h1>
+      <p class="lead">面向管理层、运营、产品和数据团队的高频问题，整理指标体系、主题看板、自助分析和诊断场景。</p>
+    </section>
+    <section class="grid">
+      <div class="card"><span>业务角色</span><strong>管理层 / 运营 / 产品 / 商务 / 数据团队</strong></div>
+      <div class="card"><span>沉淀对象</span><strong>指标、口径、主题、需求、案例</strong></div>
+      <div class="card"><span>呈现方式</span><strong>经营看板 + 诊断场景</strong></div>
+    </section>
+    <section class="panel">
+      <h2>分析架构</h2>
+      <svg viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;max-width:820px;height:auto;display:block;margin:0 auto">
+        <defs>
+          <marker id="arrow-bi" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 z" fill="#1d4ed8"/></marker>
+        </defs>
+        <rect width="820" height="440" fill="#f7f8fb" rx="10"/>
+        <text x="410" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#152033">BI 体系架构</text>
+        <text x="20" y="65" font-size="12" font-weight="700" fill="#1d4ed8">① 业务角色</text>
+        <g>
+          <rect x="40" y="78" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/><text x="120" y="103" text-anchor="middle" font-size="13" fill="#152033">管理层</text>
+          <rect x="220" y="78" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/><text x="300" y="103" text-anchor="middle" font-size="13" fill="#152033">运营</text>
+          <rect x="400" y="78" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/><text x="480" y="103" text-anchor="middle" font-size="13" fill="#152033">产品</text>
+          <rect x="580" y="78" width="160" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/><text x="660" y="103" text-anchor="middle" font-size="13" fill="#152033">商务</text>
+        </g>
+        <line x1="120" y1="118" x2="120" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="300" y1="118" x2="300" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="480" y1="118" x2="480" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="660" y1="118" x2="660" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="120" y1="148" x2="660" y2="148" stroke="#1d4ed8" stroke-width="1.2"/>
+        <line x1="390" y1="148" x2="390" y2="170" stroke="#1d4ed8" stroke-width="1.2" marker-end="url(#arrow-bi)"/>
+        <text x="20" y="160" font-size="12" font-weight="700" fill="#1d4ed8">② 业务问题层</text>
+        <rect x="40" y="170" width="700" height="40" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="390" y="195" text-anchor="middle" font-size="13" fill="#152033">北极星指标 / 异常定位 / 留存 / 实验 / 数据质量</text>
+        <line x1="390" y1="210" x2="390" y2="235" stroke="#1d4ed8" stroke-width="1.2" marker-end="url(#arrow-bi)"/>
+        <text x="20" y="250" font-size="12" font-weight="700" fill="#1d4ed8">③ 数据资产层</text>
+        <rect x="40" y="260" width="700" height="40" rx="6" fill="#1d4ed8"/>
+        <text x="390" y="285" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">指标口径 / 数据词典 / 表结构 / 历史需求 / 案例库</text>
+        <line x1="390" y1="300" x2="390" y2="325" stroke="#1d4ed8" stroke-width="1.2" marker-end="url(#arrow-bi)"/>
+        <text x="20" y="340" font-size="12" font-weight="700" fill="#1d4ed8">④ 数据应用层</text>
+        <rect x="40" y="350" width="170" height="40" rx="6" fill="#38bdf8"/><text x="125" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">9 大主题报表</text>
+        <rect x="230" y="350" width="160" height="40" rx="6" fill="#38bdf8"/><text x="310" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">自助分析</text>
+        <rect x="410" y="350" width="160" height="40" rx="6" fill="#38bdf8"/><text x="490" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">监控预警</text>
+        <rect x="590" y="350" width="150" height="40" rx="6" fill="#38bdf8"/><text x="665" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">服务概况</text>
+      </svg>
+      <p class="meta">架构图：业务角色 → 业务问题 → 数据资产 → 数据应用，自上而下沉淀为可持续运营的数据服务</p>
+    </section>
+
+    <section class="panel">
+      <h2>关键判断</h2>
+      <p>指标体系不能脱离业务阶段和组织分工。先把已知业务目标拆成能落地的指标和看板入口，再用自助分析和案例库承接未知探索。</p>
+      <h3>难点</h3>
+      <p>业务方多、诉求多，管理层、运营、产品、商务和技术团队看同一套数据时关注点不同，需要同时管理口径共识、入口设计和落地优先级。</p>
+      <h3>沉淀结果</h3>
+      <p>沉淀多张主题报表，引入自助分析平台，形成面向多类业务角色的数据服务入口，减少重复取数和反复对数。</p>
+    </section>
+    <section class="panel">
+      <h2>体系结构</h2>
+      <div class="map">
+        <div class="box"><h3>业务问题层</h3><p>管理层看经营，运营看异常和动作，产品看功能效果，商务看实验收益，技术看数据质量。</p></div>
+        <div class="box"><h3>数据资产层</h3><p>指标口径、数据词典、表结构、历史需求和案例库，降低重复沟通成本。</p></div>
+        <div class="box"><h3>数据应用层</h3><p>9 大主题报表、自助分析、监控预警和数据服务概况。</p></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>典型诊断场景</h2>
+      <ul>
+        <li>人均分发下降：先看趋势，再拆日活和下载量，继续按启动来源、留存、版本、应用类型和页面拆解。</li>
+        <li>业务增长空间：结合历史联网设备、生命周期日活率和人均分发进行预测，单个看板只负责现状和已知维度拆解。</li>
+        <li>实验整体负向但部分用户正向：由智能体辅助批量拆解人群、页面、版本和渠道，人负责判断是否值得继续。</li>
+      </ul>
+      <a class="btn" href="../dashboards/app-store-dashboard.html">查看大盘概况看板</a>
+    </section>
+  </main>
+</body>
+</html>
