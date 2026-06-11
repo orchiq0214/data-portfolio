@@ -242,45 +242,18 @@
       border: 1px solid #e5e7eb;
     }
     .case-insight strong { color: var(--ink); }
-    .diagram {
-      min-height: 340px;
-      padding: 16px;
+    .card-image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
       background: #f8fafc;
       border-bottom: 1px solid var(--line);
-      display: grid;
-      gap: 12px;
     }
-    .diagram-title {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      color: #344054;
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .diagram-flow {
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-    }
-    .diagram-node {
-      min-height: 66px;
-      padding: 10px;
-      border-radius: 8px;
-      background: #fff;
-      border: 1px solid #dbe3ef;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: #1f2937;
-      font-size: 13px;
-      font-weight: 750;
-    }
-    .diagram-note {
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: #eef6ff;
-      color: #1d4ed8;
-      font-size: 13px;
-      font-weight: 750;
     }
     .case-footer {
       display: flex;
@@ -381,7 +354,8 @@
     .donut::after { content: ""; position: absolute; inset: 22px; border-radius: 50%; background: #f8fafc; }
 
     .lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-    .lab-card { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .lab-card { padding: 18px; display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+    .lab-card .card-image { margin: -18px -18px 6px; }
     .method-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
     .method { padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
     .method h3 { margin: 0 0 10px; font-size: 16px; }
@@ -403,7 +377,7 @@
     .contact-card a { color: #fff; background: var(--blue); border-color: var(--blue); }
 
     @media (max-width: 900px) {
-      .hero, .case-grid, .lab-grid, .method-grid, .capability-grid, .priority-grid, .impact-grid, .diagram-flow { grid-template-columns: 1fr; }
+      .hero, .case-grid, .lab-grid, .method-grid, .capability-grid, .priority-grid, .impact-grid { grid-template-columns: 1fr; }
       .visual { border-left: 0; border-top: 1px solid #1e293b; }
       .section-head, .nav-inner, .contact-card { align-items: flex-start; flex-direction: column; }
       .nav-inner { padding: 12px 0; }
@@ -487,24 +461,7 @@
 
       <div class="case-grid">
         <article class="case-card">
-          <div class="diagram" aria-hidden="true">
-            <div class="diagram-title"><span>增长分析闭环</span><span>Push 触达</span></div>
-            <div class="diagram-flow">
-              <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;height:auto;display:block">
-                <defs>
-                  <marker id="arr-push" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#1d4ed8"/></marker>
-                </defs>
-                <rect x="15" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">统一数据基础</text><text x="100" y="155" text-anchor="middle" font-size="15" fill="#64748b">打通多来源</text>
-                <line x1="192" y1="120" x2="210" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-push)"/>
-                <rect x="215" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="300" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">关闭归因</text><text x="300" y="155" text-anchor="middle" font-size="15" fill="#64748b">负向围栏</text>
-                <line x1="392" y1="120" x2="410" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-push)"/>
-                <rect x="415" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="500" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">素材赛马</text><text x="500" y="155" text-anchor="middle" font-size="15" fill="#64748b">A/B 实验</text>
-                <line x1="592" y1="120" x2="610" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-push)"/>
-                <rect x="615" y="20" width="170" height="200" rx="10" fill="#1d4ed8"/><text x="700" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">算法反馈</text><text x="700" y="155" text-anchor="middle" font-size="15" fill="#bfdbfe">策略迭代</text>
-              </svg>
-            </div>
-            <div class="diagram-note">从“触达效果”拆到用户关闭风险、素材迭代和策略复盘。</div>
-          </div>
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80&auto=format&fit=crop" alt="Push 触达分析" loading="lazy"></div>
           <div class="case-main">
             <div class="tag-row"><span class="tag">业务分析</span><span class="tag">归因</span><span class="tag">实验评估</span><span class="tag">策略复盘</span></div>
             <h3>Push 触达关闭率分析与优化</h3>
@@ -518,24 +475,7 @@
         </article>
 
         <article class="case-card">
-          <div class="diagram" aria-hidden="true">
-            <div class="diagram-title"><span>数据产品体系</span><span>经营分析</span></div>
-            <div class="diagram-flow">
-              <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;height:auto;display:block">
-                <defs>
-                  <marker id="arr-bi" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#1d4ed8"/></marker>
-                </defs>
-                <rect x="15" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">业务角色</text><text x="100" y="155" text-anchor="middle" font-size="15" fill="#64748b">业务入口</text>
-                <line x1="192" y1="120" x2="210" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-bi)"/>
-                <rect x="215" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="300" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">指标体系</text><text x="300" y="155" text-anchor="middle" font-size="15" fill="#64748b">统一口径</text>
-                <line x1="392" y1="120" x2="410" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-bi)"/>
-                <rect x="415" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="500" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">主题看板</text><text x="500" y="155" text-anchor="middle" font-size="15" fill="#64748b">主题分析</text>
-                <line x1="592" y1="120" x2="610" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-bi)"/>
-                <rect x="615" y="20" width="170" height="200" rx="10" fill="#1d4ed8"/><text x="700" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">自助分析</text><text x="700" y="155" text-anchor="middle" font-size="15" fill="#bfdbfe">灵活下钻</text>
-              </svg>
-            </div>
-            <div class="diagram-note">以日活率、人均分发、留存、转化等指标承接业务诊断。</div>
-          </div>
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop" alt="指标体系与 BI 平台" loading="lazy"></div>
           <div class="case-main">
             <div class="tag-row"><span class="tag">数据产品</span><span class="tag">指标体系</span><span class="tag">主题报表</span><span class="tag">自助分析</span></div>
             <h3>指标体系、主题报表与自助分析平台建设</h3>
@@ -549,24 +489,7 @@
         </article>
 
         <article class="case-card">
-          <div class="diagram" aria-hidden="true">
-            <div class="diagram-title"><span>AI 分析助手</span><span>语义层</span></div>
-            <div class="diagram-flow">
-              <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;height:auto;display:block">
-                <defs>
-                  <marker id="arr-agent" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#7c3aed"/></marker>
-                </defs>
-                <rect x="15" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">业务问题</text><text x="100" y="155" text-anchor="middle" font-size="15" fill="#64748b">自然语言</text>
-                <line x1="192" y1="120" x2="210" y2="120" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr-agent)"/>
-                <rect x="215" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2"/><text x="300" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">口径/场景</text><text x="300" y="155" text-anchor="middle" font-size="15" fill="#64748b">知识检索</text>
-                <line x1="392" y1="120" x2="410" y2="120" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr-agent)"/>
-                <rect x="415" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2"/><text x="500" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">表与点位</text><text x="500" y="155" text-anchor="middle" font-size="15" fill="#64748b">数据资产</text>
-                <line x1="592" y1="120" x2="610" y2="120" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arr-agent)"/>
-                <rect x="615" y="20" width="170" height="200" rx="10" fill="#7c3aed"/><text x="700" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">分析草稿</text><text x="700" y="155" text-anchor="middle" font-size="15" fill="#ddd6fe">草稿生成</text>
-              </svg>
-            </div>
-            <div class="diagram-note">把口径、表结构、点位和历史需求整理成 Agent 可调用的知识。</div>
-          </div>
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&auto=format&fit=crop" alt="数据 Agent 分析助手" loading="lazy"></div>
           <div class="case-main">
             <div class="tag-row"><span class="tag">AI 赋能</span><span class="tag">知识库</span><span class="tag">语义层</span><span class="tag">Agent</span></div>
             <h3>数据 Agent 分析助手</h3>
@@ -580,24 +503,7 @@
         </article>
 
         <article class="case-card">
-          <div class="diagram" aria-hidden="true">
-            <div class="diagram-title"><span>数据治理运营</span><span>资产与质量</span></div>
-            <div class="diagram-flow">
-              <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;height:auto;display:block">
-                <defs>
-                  <marker id="arr-gov" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#0f766e"/></marker>
-                </defs>
-                <rect x="15" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">资产盘点</text><text x="100" y="155" text-anchor="middle" font-size="15" fill="#64748b">全量盘点</text>
-                <line x1="192" y1="120" x2="210" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr-gov)"/>
-                <rect x="215" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="300" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">血缘口径</text><text x="300" y="155" text-anchor="middle" font-size="15" fill="#64748b">血缘治理</text>
-                <line x1="392" y1="120" x2="410" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr-gov)"/>
-                <rect x="415" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="500" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">质量护栏</text><text x="500" y="155" text-anchor="middle" font-size="15" fill="#64748b">质量监控</text>
-                <line x1="592" y1="120" x2="610" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr-gov)"/>
-                <rect x="615" y="20" width="170" height="200" rx="10" fill="#0f766e"/><text x="700" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">成本归因</text><text x="700" y="155" text-anchor="middle" font-size="15" fill="#99f6e4">资源优化</text>
-              </svg>
-            </div>
-            <div class="diagram-note">在数据价值、服务质量、资源成本和业务影响之间做治理取舍。</div>
-          </div>
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80&auto=format&fit=crop" alt="数据治理与资产运营" loading="lazy"></div>
           <div class="case-main">
             <div class="tag-row"><span class="tag">数据治理</span><span class="tag">资产盘点</span><span class="tag">质量护栏</span><span class="tag">成本运营</span></div>
             <h3>数据治理与数据资产运营</h3>
@@ -619,47 +525,13 @@
       </div>
       <div class="lab-grid">
         <article class="lab-card">
-          <div class="diagram" aria-hidden="true">
-            <div class="diagram-title"><span>经营驾驶舱结构</span><span>业务诊断</span></div>
-            <div class="diagram-flow">
-              <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;height:auto;display:block">
-                <defs>
-                  <marker id="arr-dash1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#1d4ed8"/></marker>
-                </defs>
-                <rect x="15" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">核心指标</text><text x="100" y="155" text-anchor="middle" font-size="15" fill="#64748b">健康度</text>
-                <line x1="192" y1="120" x2="210" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-dash1)"/>
-                <rect x="215" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="300" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">趋势诊断</text><text x="300" y="155" text-anchor="middle" font-size="15" fill="#64748b">异常定位</text>
-                <line x1="392" y1="120" x2="410" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-dash1)"/>
-                <rect x="415" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><text x="500" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">渠道拆解</text><text x="500" y="155" text-anchor="middle" font-size="15" fill="#64748b">多维拆解</text>
-                <line x1="592" y1="120" x2="610" y2="120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arr-dash1)"/>
-                <rect x="615" y="20" width="170" height="200" rx="10" fill="#1d4ed8"/><text x="700" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">用户路径</text><text x="700" y="155" text-anchor="middle" font-size="15" fill="#bfdbfe">行为路径</text>
-              </svg>
-            </div>
-            <div class="diagram-note">用于定位日活率、人均分发、留存和内容转化的变化原因。</div>
-          </div>
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop" alt="经营驾驶舱看板" loading="lazy"></div>
           <h3>大盘概况经营驾驶舱</h3>
           <p>围绕平台经营、用户运营、产品运营和内容运营指标，组织一套可用于异常定位和业务诊断的看板入口。</p>
           <a class="btn primary" href="dashboards/app-store-dashboard.html">查看作品</a>
         </article>
         <article class="lab-card">
-          <div class="diagram" aria-hidden="true">
-            <div class="diagram-title"><span>数据治理看板结构</span><span>治理运营</span></div>
-            <div class="diagram-flow">
-              <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif" style="width:100%;height:auto;display:block">
-                <defs>
-                  <marker id="arr-dash2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#0f766e"/></marker>
-                </defs>
-                <rect x="15" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="100" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">资产分布</text><text x="100" y="155" text-anchor="middle" font-size="15" fill="#64748b">资产视图</text>
-                <line x1="192" y1="120" x2="210" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr-dash2)"/>
-                <rect x="215" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="300" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">质量状态</text><text x="300" y="155" text-anchor="middle" font-size="15" fill="#64748b">健康状态</text>
-                <line x1="392" y1="120" x2="410" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr-dash2)"/>
-                <rect x="415" y="20" width="170" height="200" rx="10" fill="#fff" stroke="#0f766e" stroke-width="2"/><text x="500" y="110" text-anchor="middle" font-size="26" font-weight="600" fill="#152033">成本归因</text><text x="500" y="155" text-anchor="middle" font-size="15" fill="#64748b">账单拆解</text>
-                <line x1="592" y1="120" x2="610" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr-dash2)"/>
-                <rect x="615" y="20" width="170" height="200" rx="10" fill="#0f766e"/><text x="700" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">动作追踪</text><text x="700" y="155" text-anchor="middle" font-size="15" fill="#99f6e4">闭环跟踪</text>
-              </svg>
-            </div>
-            <div class="diagram-note">用于跟踪资产、质量、用量、成本和治理进展。</div>
-          </div>
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop" alt="数据治理看板" loading="lazy"></div>
           <h3>数据治理驾驶舱</h3>
           <p>围绕资产分布、质量状态、用量变化、成本归因和治理动作，展示数据治理运营的分析框架。</p>
           <a class="btn primary" href="dashboards/cost-dashboard.html">查看作品</a>
