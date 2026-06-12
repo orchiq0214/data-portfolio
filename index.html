@@ -466,7 +466,62 @@
 
       <div class="case-grid">
         <article class="case-card">
-          <div class="card-image"><img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=800&q=80&auto=format&fit=crop" alt="Push 触达分析" loading="lazy"></div>
+          <div class="card-image"><svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif">
+            <!-- 背景 -->
+            <rect x="0" y="0" width="800" height="320" fill="#f8fafc"/>
+            <!-- 手机外形 -->
+            <rect x="60" y="40" width="200" height="240" rx="22" fill="#1f2937" stroke="#0f172a" stroke-width="2"/>
+            <rect x="72" y="56" width="176" height="208" rx="10" fill="#0b1220"/>
+            <!-- 顶部状态栏 -->
+            <rect x="72" y="56" width="176" height="18" fill="#020617"/>
+            <text x="84" y="69" font-size="9" fill="#94a3b8">9:41</text>
+            <circle cx="232" cy="65" r="3" fill="#22c55e"/>
+            <!-- Push 通知 1 -->
+            <rect x="82" y="84" width="156" height="48" rx="8" fill="#1e3a8a"/>
+            <rect x="90" y="92" width="22" height="22" rx="5" fill="#60a5fa"/>
+            <text x="101" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">P</text>
+            <text x="120" y="100" font-size="9" font-weight="700" fill="#fff">购物提醒</text>
+            <text x="120" y="113" font-size="8" fill="#cbd5e1">您关注的商品降价了</text>
+            <text x="120" y="124" font-size="7" fill="#94a3b8">10 分钟送达</text>
+            <!-- Push 通知 2 -->
+            <rect x="82" y="140" width="156" height="48" rx="8" fill="#3730a3"/>
+            <rect x="90" y="148" width="22" height="22" rx="5" fill="#a78bfa"/>
+            <text x="101" y="164" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">A</text>
+            <text x="120" y="156" font-size="9" font-weight="700" fill="#fff">活动通知</text>
+            <text x="120" y="169" font-size="8" fill="#cbd5e1">限时优惠券待领取</text>
+            <text x="120" y="180" font-size="7" fill="#94a3b8">1 小时后结束</text>
+            <!-- Push 通知 3 - 关闭 -->
+            <rect x="82" y="196" width="156" height="48" rx="8" fill="#374151" fill-opacity="0.6"/>
+            <rect x="90" y="204" width="22" height="22" rx="5" fill="#6b7280"/>
+            <text x="101" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#cbd5e1">N</text>
+            <text x="120" y="212" font-size="9" font-weight="700" fill="#cbd5e1">系统消息</text>
+            <text x="120" y="225" font-size="8" fill="#94a3b8">已关闭</text>
+            <line x1="120" y1="208" x2="232" y2="232" stroke="#ef4444" stroke-width="1.5"/>
+            <!-- 关闭率下降曲线 -->
+            <g>
+              <rect x="320" y="40" width="440" height="240" fill="#fff" stroke="#e3e8ef" stroke-width="1" rx="8"/>
+              <text x="340" y="64" font-size="14" font-weight="700" fill="#152033">关闭率趋势</text>
+              <text x="340" y="82" font-size="10" fill="#667085">优化前 → 优化后</text>
+              <!-- 坐标轴 -->
+              <line x1="360" y1="240" x2="740" y2="240" stroke="#cbd5e1"/>
+              <line x1="360" y1="100" x2="360" y2="240" stroke="#cbd5e1"/>
+              <!-- 优化前 - 高位 -->
+              <polyline points="360,120 400,128 440,118 480,135 520,125 560,140 600,130" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <!-- 优化后 - 下降 -->
+              <polyline points="600,130 640,150 680,170 720,190 740,205" fill="none" stroke="#22c55e" stroke-width="3"/>
+              <circle cx="600" cy="130" r="4" fill="#22c55e"/>
+              <circle cx="740" cy="205" r="4" fill="#22c55e"/>
+              <!-- 标注 -->
+              <text x="610" y="122" font-size="10" font-weight="700" fill="#22c55e">↓0.8pp</text>
+              <text x="440" y="112" font-size="9" fill="#94a3b8">优化前</text>
+              <text x="690" y="200" font-size="9" fill="#22c55e">优化后</text>
+              <text x="360" y="260" font-size="9" fill="#94a3b8">W1</text>
+              <text x="460" y="260" font-size="9" fill="#94a3b8">W4</text>
+              <text x="560" y="260" font-size="9" fill="#94a3b8">W8</text>
+              <text x="660" y="260" font-size="9" fill="#94a3b8">W12</text>
+              <text x="730" y="260" font-size="9" fill="#94a3b8">W16</text>
+            </g>
+          </svg></div>
           <div class="case-main">
             <div class="tag-row"><span class="tag">业务分析</span><span class="tag">归因</span><span class="tag">实验评估</span><span class="tag">策略复盘</span></div>
             <h3>Push 触达关闭率分析与优化</h3>
@@ -480,7 +535,97 @@
         </article>
 
         <article class="case-card">
-          <div class="card-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop" alt="指标体系与 BI 平台" loading="lazy"></div>
+          <div class="card-image"><svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif">
+            <rect x="0" y="0" width="800" height="320" fill="#f8fafc"/>
+            <!-- 指标体系 - 树状图 -->
+            <g>
+              <text x="40" y="40" font-size="14" font-weight="700" fill="#152033">指标体系</text>
+              <rect x="40" y="60" width="160" height="44" rx="8" fill="#1d4ed8"/>
+              <text x="120" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">北极星指标</text>
+              <text x="120" y="96" text-anchor="middle" font-size="10" fill="#bfdbfe">GMV / DAU</text>
+              <!-- 一级分支 -->
+              <line x1="120" y1="104" x2="120" y2="124" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="60" y1="124" x2="180" y2="124" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="60" y1="124" x2="60" y2="144" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="120" y1="124" x2="120" y2="144" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="180" y1="124" x2="180" y2="144" stroke="#94a3b8" stroke-width="1.5"/>
+              <rect x="20" y="144" width="80" height="32" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+              <text x="60" y="164" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">用户</text>
+              <rect x="80" y="144" width="80" height="32" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+              <text x="120" y="164" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">交易</text>
+              <rect x="140" y="144" width="80" height="32" rx="6" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+              <text x="180" y="164" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">内容</text>
+              <!-- 二级分支 -->
+              <line x1="60" y1="176" x2="60" y2="196" stroke="#cbd5e1"/>
+              <line x1="120" y1="176" x2="120" y2="196" stroke="#cbd5e1"/>
+              <line x1="180" y1="176" x2="180" y2="196" stroke="#cbd5e1"/>
+              <rect x="20" y="196" width="80" height="28" rx="5" fill="#eff6ff"/>
+              <text x="60" y="214" text-anchor="middle" font-size="10" fill="#1d4ed8">新/活/留</text>
+              <rect x="80" y="196" width="80" height="28" rx="5" fill="#eff6ff"/>
+              <text x="120" y="214" text-anchor="middle" font-size="10" fill="#1d4ed8">转化客单</text>
+              <rect x="140" y="196" width="80" height="28" rx="5" fill="#eff6ff"/>
+              <text x="180" y="214" text-anchor="middle" font-size="10" fill="#1d4ed8">曝光CTR</text>
+              <!-- 三级 -->
+              <rect x="20" y="234" width="80" height="24" rx="4" fill="#f1f5f9"/>
+              <text x="60" y="250" text-anchor="middle" font-size="9" fill="#475467">DAU/MAU</text>
+              <rect x="80" y="234" width="80" height="24" rx="4" fill="#f1f5f9"/>
+              <text x="120" y="250" text-anchor="middle" font-size="9" fill="#475467">付费率</text>
+              <rect x="140" y="234" width="80" height="24" rx="4" fill="#f1f5f9"/>
+              <text x="180" y="250" text-anchor="middle" font-size="9" fill="#475467">完播率</text>
+            </g>
+            <!-- 右侧 - BI 平台看板 -->
+            <g>
+              <rect x="280" y="40" width="480" height="240" rx="8" fill="#fff" stroke="#e3e8ef" stroke-width="1"/>
+              <!-- 顶部导航 -->
+              <rect x="280" y="40" width="480" height="32" fill="#f8fafc" stroke="#e3e8ef"/>
+              <circle cx="296" cy="56" r="4" fill="#ef4444"/>
+              <circle cx="310" cy="56" r="4" fill="#f59e0b"/>
+              <circle cx="324" cy="56" r="4" fill="#22c55e"/>
+              <text x="540" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#152033">经营分析平台</text>
+              <!-- 左侧菜单 -->
+              <rect x="280" y="72" width="100" height="208" fill="#f8fafc"/>
+              <rect x="288" y="84" width="84" height="22" rx="4" fill="#dbeafe"/>
+              <text x="330" y="99" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">指标体系</text>
+              <text x="298" y="128" font-size="10" fill="#475467">用户主题</text>
+              <text x="298" y="148" font-size="10" fill="#475467">交易主题</text>
+              <text x="298" y="168" font-size="10" fill="#475467">内容主题</text>
+              <text x="298" y="188" font-size="10" fill="#475467">渠道主题</text>
+              <text x="298" y="208" font-size="10" fill="#475467">自助分析</text>
+              <text x="298" y="228" font-size="10" fill="#475467">数据服务</text>
+              <!-- 主区域 4 个 KPI -->
+              <g>
+                <rect x="394" y="84" width="80" height="50" rx="4" fill="#eff6ff"/>
+                <text x="434" y="100" text-anchor="middle" font-size="9" fill="#667085">GMV</text>
+                <text x="434" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">¥1.28M</text>
+                <text x="434" y="128" text-anchor="middle" font-size="8" fill="#22c55e">+12.4%</text>
+                <rect x="480" y="84" width="80" height="50" rx="4" fill="#f0fdfa"/>
+                <text x="520" y="100" text-anchor="middle" font-size="9" fill="#667085">DAU</text>
+                <text x="520" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#0f766e">86.2w</text>
+                <text x="520" y="128" text-anchor="middle" font-size="8" fill="#22c55e">+5.1%</text>
+                <rect x="566" y="84" width="80" height="50" rx="4" fill="#fef3c7"/>
+                <text x="606" y="100" text-anchor="middle" font-size="9" fill="#667085">付费率</text>
+                <text x="606" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#d97706">32.4%</text>
+                <text x="606" y="128" text-anchor="middle" font-size="8" fill="#ef4444">-1.2%</text>
+                <rect x="652" y="84" width="80" height="50" rx="4" fill="#f5f3ff"/>
+                <text x="692" y="100" text-anchor="middle" font-size="9" fill="#667085">ARPU</text>
+                <text x="692" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">¥42</text>
+                <text x="692" y="128" text-anchor="middle" font-size="8" fill="#22c55e">+3.6%</text>
+              </g>
+              <!-- 折线图 -->
+              <rect x="394" y="144" width="338" height="64" fill="#f8fafc" rx="4"/>
+              <polyline points="404,194 444,180 484,188 524,170 564,176 604,158 644,164 684,148 720,154" fill="none" stroke="#1d4ed8" stroke-width="2"/>
+              <polyline points="404,200 444,196 484,192 524,184 564,190 604,180 644,176 684,168 720,172" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <!-- 漏斗 -->
+              <g>
+                <rect x="394" y="218" width="320" height="52" fill="#f8fafc" rx="4"/>
+                <text x="404" y="232" font-size="9" fill="#475467">用户转化漏斗</text>
+                <rect x="404" y="240" width="280" height="8" fill="#dbeafe" rx="2"/>
+                <rect x="404" y="240" width="280" height="8" fill="#1d4ed8" rx="2"/>
+                <rect x="404" y="252" width="220" height="8" fill="#dbeafe" rx="2"/>
+                <rect x="404" y="252" width="220" height="8" fill="#3b82f6" rx="2"/>
+              </g>
+            </g>
+          </svg></div>
           <div class="case-main">
             <div class="tag-row"><span class="tag">数据产品</span><span class="tag">指标体系</span><span class="tag">主题报表</span><span class="tag">自助分析</span></div>
             <h3>指标体系、主题报表与自助分析平台建设</h3>
@@ -602,7 +747,64 @@
           <a class="btn primary" href="dashboards/app-store-dashboard.html">查看作品</a>
         </article>
         <article class="lab-card">
-          <div class="card-image"><img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80&auto=format&fit=crop" alt="黄金堆" loading="lazy"></div>
+          <div class="card-image"><svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif">
+            <defs>
+              <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fde68a"/>
+                <stop offset="50%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#b45309"/>
+              </linearGradient>
+              <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1c1917"/>
+                <stop offset="100%" stop-color="#0c0a09"/>
+              </linearGradient>
+            </defs>
+            <!-- 暗色背景 -->
+            <rect x="0" y="0" width="800" height="320" fill="url(#bgGrad)"/>
+            <!-- 散光 -->
+            <ellipse cx="400" cy="280" rx="360" ry="60" fill="#f59e0b" fill-opacity="0.18"/>
+            <!-- 金条堆（梯形） -->
+            <g>
+              <!-- 后排 -->
+              <rect x="180" y="160" width="440" height="60" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1.5" rx="3"/>
+              <line x1="320" y1="160" x2="320" y2="220" stroke="#78350f" stroke-width="1"/>
+              <line x1="400" y1="160" x2="400" y2="220" stroke="#78350f" stroke-width="1"/>
+              <line x1="480" y1="160" x2="480" y2="220" stroke="#78350f" stroke-width="1"/>
+              <text x="400" y="194" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">999.9</text>
+              <!-- 中排（稍小，偏移） -->
+              <rect x="220" y="110" width="360" height="55" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1.5" rx="3"/>
+              <line x1="340" y1="110" x2="340" y2="165" stroke="#78350f" stroke-width="1"/>
+              <line x1="400" y1="110" x2="400" y2="165" stroke="#78350f" stroke-width="1"/>
+              <line x1="460" y1="110" x2="460" y2="165" stroke="#78350f" stroke-width="1"/>
+              <text x="400" y="142" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">FINE GOLD</text>
+              <!-- 前排 -->
+              <rect x="260" y="65" width="280" height="50" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1.5" rx="3"/>
+              <line x1="350" y1="65" x2="350" y2="115" stroke="#78350f" stroke-width="1"/>
+              <line x1="400" y1="65" x2="400" y2="115" stroke="#78350f" stroke-width="1"/>
+              <line x1="450" y1="65" x2="450" y2="115" stroke="#78350f" stroke-width="1"/>
+              <text x="400" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">DATA ASSET</text>
+            </g>
+            <!-- 顶部散落金币 -->
+            <circle cx="200" cy="40" r="12" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+            <text x="200" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">$</text>
+            <circle cx="600" cy="30" r="14" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+            <text x="600" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">¥</text>
+            <circle cx="100" cy="80" r="10" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+            <circle cx="700" cy="100" r="11" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+            <text x="700" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">€</text>
+            <!-- 标题 -->
+            <text x="400" y="265" text-anchor="middle" font-size="18" font-weight="700" fill="#fbbf24">数据资产 = 数据金矿</text>
+            <text x="400" y="290" text-anchor="middle" font-size="12" fill="#fde68a">质量 / 复用 / 治理 = 资产价值</text>
+            <!-- 数字标签 -->
+            <g>
+              <rect x="60" y="240" width="120" height="56" rx="6" fill="#1c1917" stroke="#f59e0b" stroke-width="1"/>
+              <text x="120" y="260" text-anchor="middle" font-size="9" fill="#fde68a">资产盘点</text>
+              <text x="120" y="282" text-anchor="middle" font-size="16" font-weight="700" fill="#fbbf24">2,856</text>
+              <rect x="620" y="240" width="120" height="56" rx="6" fill="#1c1917" stroke="#f59e0b" stroke-width="1"/>
+              <text x="680" y="260" text-anchor="middle" font-size="9" fill="#fde68a">复用率</text>
+              <text x="680" y="282" text-anchor="middle" font-size="16" font-weight="700" fill="#fbbf24">68%</text>
+            </g>
+          </svg></div>
           <h3>数据治理驾驶舱</h3>
           <p>围绕资产分布、质量状态、用量变化、成本归因和治理动作，展示数据治理运营的分析框架。</p>
           <a class="btn primary" href="dashboards/cost-dashboard.html">查看作品</a>
