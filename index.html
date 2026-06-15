@@ -809,6 +809,192 @@
           <p>围绕资产分布、质量状态、用量变化、成本归因和治理动作，展示数据治理运营的分析框架。</p>
           <a class="btn primary" href="dashboards/cost-dashboard.html">查看作品</a>
         </article>
+        <article class="lab-card">
+          <div class="card-image"><svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif">
+            <defs>
+              <linearGradient id="cockpitBg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#050d1a"/>
+                <stop offset="100%" stop-color="#0a1730"/>
+              </linearGradient>
+              <radialGradient id="cockpitGlow" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- 暗色驾驶舱背景 -->
+            <rect x="0" y="0" width="800" height="320" fill="url(#cockpitBg)"/>
+            <rect x="0" y="0" width="800" height="320" fill="url(#cockpitGlow)"/>
+            <!-- 顶部 KPI 条 -->
+            <g>
+              <rect x="40" y="30" width="110" height="46" rx="4" fill="#0a1730" stroke="#00d4ff" stroke-opacity="0.4"/>
+              <text x="95" y="50" text-anchor="middle" font-size="9" fill="#7a8ba8">总发电量</text>
+              <text x="95" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#00d4ff">544.6 万 kWh</text>
+              <rect x="160" y="30" width="110" height="46" rx="4" fill="#0a1730" stroke="#00e676" stroke-opacity="0.4"/>
+              <text x="215" y="50" text-anchor="middle" font-size="9" fill="#7a8ba8">总碳减排</text>
+              <text x="215" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#00e676">11,115 吨</text>
+              <rect x="280" y="30" width="110" height="46" rx="4" fill="#0a1730" stroke="#a855f7" stroke-opacity="0.4"/>
+              <text x="335" y="50" text-anchor="middle" font-size="9" fill="#7a8ba8">总收入</text>
+              <text x="335" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#a855f7">819.0 万</text>
+              <rect x="400" y="30" width="110" height="46" rx="4" fill="#0a1730" stroke="#00d4ff" stroke-opacity="0.4"/>
+              <text x="455" y="50" text-anchor="middle" font-size="9" fill="#7a8ba8">计划完成</text>
+              <text x="455" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#00d4ff">96.8%</text>
+              <rect x="520" y="30" width="110" height="46" rx="4" fill="#0a1730" stroke="#ff9500" stroke-opacity="0.4"/>
+              <text x="575" y="50" text-anchor="middle" font-size="9" fill="#7a8ba8">工单闭环</text>
+              <text x="575" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#ff9500">94.5%</text>
+            </g>
+            <!-- 左侧：13 区域 + 5 站点位（不规则形状） -->
+            <g transform="translate(40,100)">
+              <rect x="0" y="0" width="240" height="190" rx="4" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="120" y="16" text-anchor="middle" font-size="10" fill="#7a8ba8">13 区域 + 5 站 GIS</text>
+              <!-- 13 个不规则区域 -->
+              <g fill="#0e2440" stroke="#00d4ff" stroke-opacity="0.4" stroke-width="0.8">
+                <polygon points="10,30 100,30 100,90 10,90"/>
+                <polygon points="100,30 160,30 160,60 100,60"/>
+                <polygon points="160,30 230,30 230,90 160,90"/>
+                <polygon points="10,90 60,90 60,130 10,130"/>
+                <polygon points="60,90 110,90 110,130 60,130"/>
+                <polygon points="110,90 160,90 160,130 110,130"/>
+                <polygon points="160,90 230,90 230,130 160,130"/>
+                <polygon points="10,130 60,130 60,180 10,180"/>
+                <polygon points="60,130 110,130 110,180 60,180"/>
+                <polygon points="110,130 160,130 160,180 110,180"/>
+                <polygon points="160,130 230,130 230,180 160,180"/>
+                <polygon points="100,60 160,60 160,90 100,90"/>
+                <polygon points="160,60 230,60 230,90 230,60"/>
+              </g>
+              <!-- 5 个站点（脉冲圆） -->
+              <g>
+                <circle cx="55" cy="60" r="6" fill="#00d4ff"/>
+                <circle cx="55" cy="60" r="10" fill="none" stroke="#00d4ff" stroke-opacity="0.4"/>
+                <circle cx="130" cy="45" r="6" fill="#00d4ff"/>
+                <circle cx="130" cy="45" r="10" fill="none" stroke="#00d4ff" stroke-opacity="0.4"/>
+                <circle cx="195" cy="60" r="6" fill="#00d4ff"/>
+                <circle cx="195" cy="60" r="10" fill="none" stroke="#00d4ff" stroke-opacity="0.4"/>
+                <circle cx="85" cy="155" r="6" fill="#00d4ff"/>
+                <circle cx="85" cy="155" r="10" fill="none" stroke="#00d4ff" stroke-opacity="0.4"/>
+                <circle cx="135" cy="155" r="6" fill="#00d4ff"/>
+                <circle cx="135" cy="155" r="10" fill="none" stroke="#00d4ff" stroke-opacity="0.4"/>
+              </g>
+            </g>
+            <!-- 中部：30 天趋势柱 -->
+            <g transform="translate(300,100)">
+              <rect x="0" y="0" width="220" height="100" rx="4" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="110" y="16" text-anchor="middle" font-size="10" fill="#7a8ba8">30 天 发电 / 故障 / 工单 / 巡检</text>
+              <g fill="#00d4ff" fill-opacity="0.85">
+                <rect x="20" y="50" width="6" height="35"/>
+                <rect x="32" y="40" width="6" height="45"/>
+                <rect x="44" y="55" width="6" height="30"/>
+                <rect x="56" y="35" width="6" height="50"/>
+                <rect x="68" y="50" width="6" height="35"/>
+                <rect x="80" y="45" width="6" height="40"/>
+                <rect x="92" y="60" width="6" height="25"/>
+                <rect x="104" y="40" width="6" height="45"/>
+                <rect x="116" y="50" width="6" height="35"/>
+                <rect x="128" y="55" width="6" height="30"/>
+                <rect x="140" y="35" width="6" height="50"/>
+                <rect x="152" y="45" width="6" height="40"/>
+                <rect x="164" y="50" width="6" height="35"/>
+                <rect x="176" y="55" width="6" height="30"/>
+                <rect x="188" y="40" width="6" height="45"/>
+                <rect x="200" y="50" width="6" height="35"/>
+              </g>
+              <polyline points="23,60 35,55 47,65 59,50 71,60 83,58 95,68 107,55 119,60 131,65 143,50 155,58 167,60 179,65 191,55 203,60" fill="none" stroke="#ff3d3d" stroke-width="1"/>
+            </g>
+            <!-- 中部：雷达图 -->
+            <g transform="translate(300,210)">
+              <rect x="0" y="0" width="220" height="80" rx="4" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="110" y="16" text-anchor="middle" font-size="10" fill="#7a8ba8">5 站多维雷达</text>
+              <g transform="translate(110,52)" fill="none" stroke="#00d4ff" stroke-opacity="0.3">
+                <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11"/>
+                <polygon points="0,-15 13,-7 13,7 0,15 -13,7 -13,-7"/>
+                <polygon points="0,-8 7,-4 7,4 0,8 -7,4 -7,-4"/>
+              </g>
+              <polygon points="0,-18 14,-8 16,10 0,18 -14,9 -16,-9" fill="#00d4ff" fill-opacity="0.2" stroke="#00d4ff" stroke-width="1"/>
+            </g>
+            <!-- 右侧：5×24h 热力 + 等效利用 -->
+            <g transform="translate(540,100)">
+              <rect x="0" y="0" width="220" height="100" rx="4" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="110" y="16" text-anchor="middle" font-size="10" fill="#7a8ba8">5 站 × 24h 平均功率热力</text>
+              <g>
+                <rect x="20" y="30" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="28" y="30" width="6" height="6" fill="#00d4ff"/>
+                <rect x="36" y="30" width="6" height="6" fill="#00d4ff"/>
+                <rect x="44" y="30" width="6" height="6" fill="#00d4ff"/>
+                <rect x="52" y="30" width="6" height="6" fill="#ff9500"/>
+                <rect x="60" y="30" width="6" height="6" fill="#00d4ff"/>
+                <rect x="68" y="30" width="6" height="6" fill="#00d4ff"/>
+                <rect x="72" y="30" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="20" y="40" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="28" y="40" width="6" height="6" fill="#00d4ff"/>
+                <rect x="36" y="40" width="6" height="6" fill="#00d4ff"/>
+                <rect x="44" y="40" width="6" height="6" fill="#00d4ff"/>
+                <rect x="52" y="40" width="6" height="6" fill="#ff9500"/>
+                <rect x="60" y="40" width="6" height="6" fill="#00d4ff"/>
+                <rect x="68" y="40" width="6" height="6" fill="#00d4ff"/>
+                <rect x="76" y="40" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="20" y="50" width="6" height="6" fill="#ff9500"/>
+                <rect x="28" y="50" width="6" height="6" fill="#ff3d3d"/>
+                <rect x="36" y="50" width="6" height="6" fill="#ff3d3d"/>
+                <rect x="44" y="50" width="6" height="6" fill="#ff3d3d"/>
+                <rect x="52" y="50" width="6" height="6" fill="#ff3d3d"/>
+                <rect x="60" y="50" width="6" height="6" fill="#ff3d3d"/>
+                <rect x="68" y="50" width="6" height="6" fill="#ff9500"/>
+                <rect x="76" y="50" width="6" height="6" fill="#ff9500"/>
+                <rect x="20" y="60" width="6" height="6" fill="#00d4ff"/>
+                <rect x="28" y="60" width="6" height="6" fill="#00d4ff"/>
+                <rect x="36" y="60" width="6" height="6" fill="#00d4ff"/>
+                <rect x="44" y="60" width="6" height="6" fill="#ff9500"/>
+                <rect x="52" y="60" width="6" height="6" fill="#00d4ff"/>
+                <rect x="60" y="60" width="6" height="6" fill="#00d4ff"/>
+                <rect x="68" y="60" width="6" height="6" fill="#00d4ff"/>
+                <rect x="76" y="60" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="20" y="70" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="28" y="70" width="6" height="6" fill="#00d4ff"/>
+                <rect x="36" y="70" width="6" height="6" fill="#00d4ff"/>
+                <rect x="44" y="70" width="6" height="6" fill="#00d4ff"/>
+                <rect x="52" y="70" width="6" height="6" fill="#00d4ff"/>
+                <rect x="60" y="70" width="6" height="6" fill="#00d4ff"/>
+                <rect x="68" y="70" width="6" height="6" fill="#0a1c3a"/>
+                <rect x="76" y="70" width="6" height="6" fill="#0a1c3a"/>
+              </g>
+            </g>
+            <g transform="translate(540,210)">
+              <rect x="0" y="0" width="220" height="80" rx="4" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="110" y="16" text-anchor="middle" font-size="10" fill="#7a8ba8">等效利用小时 / 储能 24h 调度</text>
+              <g>
+                <rect x="20" y="30" width="160" height="14" fill="#0e2440"/>
+                <rect x="20" y="30" width="120" height="14" fill="#00d4ff"/>
+                <text x="184" y="40" text-anchor="end" font-size="9" fill="#7a8ba8">S01</text>
+                <rect x="20" y="48" width="160" height="14" fill="#0e2440"/>
+                <rect x="20" y="48" width="140" height="14" fill="#00d4ff"/>
+                <text x="184" y="58" text-anchor="end" font-size="9" fill="#7a8ba8">S02</text>
+                <rect x="20" y="66" width="160" height="14" fill="#0e2440"/>
+                <rect x="20" y="66" width="80" height="14" fill="#00d4ff"/>
+                <text x="184" y="76" text-anchor="end" font-size="9" fill="#7a8ba8">S03</text>
+              </g>
+            </g>
+            <!-- 底部 4 栏 -->
+            <g transform="translate(40,300)">
+              <rect x="0" y="0" width="170" height="14" rx="2" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="6" y="10" font-size="8" fill="#7a8ba8">设备状态 5×5（含工单）</text>
+            </g>
+            <g transform="translate(220,300)">
+              <rect x="0" y="0" width="170" height="14" rx="2" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="6" y="10" font-size="8" fill="#7a8ba8">运维 4 卡（巡检/修复/告警/停机）</text>
+            </g>
+            <g transform="translate(400,300)">
+              <rect x="0" y="0" width="170" height="14" rx="2" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="6" y="10" font-size="8" fill="#7a8ba8">预算执行 5 类（人员/材料/...）</text>
+            </g>
+            <g transform="translate(580,300)">
+              <rect x="0" y="0" width="180" height="14" rx="2" fill="#0a1730" stroke="#1a3a5a"/>
+              <text x="6" y="10" font-size="8" fill="#7a8ba8">碳资产 4 卡（排放/配额/CCER/核查）</text>
+            </g>
+          </svg></div>
+          <h3>多业态资产经营驾驶舱</h3>
+          <p>围绕多源数据整合（资产 / 设备 / 经营 / 碳资产），用 1920×1080 大屏展示 KPI 监控、GIS 区域图、趋势、雷达、热力、设备矩阵、运维指标、预算执行和碳资产全景。</p>
+          <a class="btn primary" href="dashboards/multi-asset-cockpit.html">查看作品</a>
+        </article>
       </div>
     </section>
 
